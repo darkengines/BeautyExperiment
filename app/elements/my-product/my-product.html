@@ -1,0 +1,109 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<dom-module id="my-product">
+	<template>
+		<style>
+			:host {
+			display: block;
+			}
+			span {
+			@apply(--paper-font-body1);
+			}
+			.product {
+				display: flex;
+				align-items: center;
+			}
+			.image {
+				width: 64px;
+				height: 64px;
+				border-radius: 50%;
+				margin-right: 32px;
+			}
+			.name {
+				font-size: 24px;
+				width: 650px;
+			}
+			.price {
+				margin-right: 32px;
+				min-width: 124px
+			}
+		</style>
+		<ul>
+			<template is="dom-repeat" items="{{products}}">
+				<div class="product">
+					<img class="image" src="{{item.image}}" />
+					<div class="name">{{item.name}}</div>
+					<div class="price">{{item.price}}</div>
+					<div class="rank">
+						<svg id="Layer_1" x="0px" y="0px" width="64px" height="64px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+							<polygon xmlns="http://www.w3.org/2000/svg" fill="#1D1D1B" stroke="rgba(33,33,33,1)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+							points=" 259.216,29.942 330.27,173.919 489.16,197.007 374.185,309.08 401.33,467.31 259.216,392.612 117.104,467.31 144.25,309.08   29.274,197.007 188.165,173.919 " 
+							style="fill: url(#progress{{item.id}}); "/>
+							<linearGradient id="progress{{item.id}}">
+								  <stop offset$="{{item.rank}}" id="stop1{{item.id}}" stop-color="gold"/>
+								  <stop offset$="{{item.rank}}" id="stop2{{item.id}}" stop-color="transparent"/>
+							</linearGradient>
+						</svg>
+					</div>
+					<div class="user_rank">
+						<svg id="Layer_1" x="0px" y="0px" width="64px" height="64px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+							<polygon xmlns="http://www.w3.org/2000/svg" fill="#1D1D1B" stroke="rgba(33,33,33,1)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+							points=" 259.216,29.942 330.27,173.919 489.16,197.007 374.185,309.08 401.33,467.31 259.216,392.612 117.104,467.31 144.25,309.08   29.274,197.007 188.165,173.919 " 
+							style="fill: url(#uprogress{{item.id}}); "/>
+							<linearGradient id="uprogress{{item.id}}">
+								  <stop offset$="{{item.user_rank}}" id="ustop1{{item.id}}" stop-color="green"/>
+								  <stop offset$="{{item.user_rank}}" id="ustop2{{item.id}}" stop-color="transparent"/>
+							</linearGradient>
+						</svg>
+					</div>
+				</div>
+			</template>
+		</ul>
+	</template>
+	<script>
+	(function() {
+		  'use strict';
+		
+		  Polymer({
+		    is: 'my-product',
+		
+		    properties: {
+		      items: {
+		        type: Array,
+		        notify: true,
+		      }
+		    },
+		
+		    ready: function() {
+				this.products = [
+					{"id":1,"name":"LOPERAMIDE HYDROCHLORIDE","description":"sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et","image":"http://dummyimage.com/216x161.png/cc0000/ffffff","price":"€11,82","category":"Anti-Diarrheal","rank":"0.55","user_rank":"0.18"},
+					{"id":2,"name":"oxycodone hydrochloride and ibuprofen","description":"sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices","image":"http://dummyimage.com/240x196.gif/dddddd/000000","price":"€48,55","category":"oxycodone hydrochloride and ibuprofen","rank":"0.46","user_rank":"0.51"},
+					{"id":3,"name":"oxycodone hydrochloride and acetaminophen","description":"nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus","image":"http://dummyimage.com/189x197.png/ff4444/ffffff","price":"€28,92","category":"OXYCODONE AND ACETAMINOPHEN","rank":"0.05","user_rank":"0.32"},
+					{"id":4,"name":"Alcohol","description":"et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt lacus at velit","image":"http://dummyimage.com/110x250.jpg/dddddd/000000","price":"€17,97","category":"Hand Sanitizer","rank":"0.12"},
+					{"id":5,"name":"Potassium Citrate","description":"amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis","image":"http://dummyimage.com/183x141.gif/cc0000/ffffff","price":"€99,53","category":"Potassium Citrate","rank":"0.97","user_rank":"0.86"},
+					{"id":6,"name":"TITANIUM DIOXIDE","description":"sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus","image":"http://dummyimage.com/235x229.png/5fa2dd/ffffff","price":"€70,95","category":"SPF30 EVERYDAY/YEAR-ROUND SUNSCREEN","rank":"0.8"},
+					{"id":7,"name":"triclosan","description":"ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst","image":"http://dummyimage.com/235x140.jpg/5fa2dd/ffffff","price":"€31,23","category":"Antibacterial Foaming Hand Cleanser","rank":"0.22","user_rank":"0.65"},
+					{"id":8,"name":"Grippe-HP","description":"felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat","image":"http://dummyimage.com/167x249.png/dddddd/000000","price":"€30,02","category":"Grippe-HP","rank":"0.34","user_rank":"0.87"},
+					{"id":9,"name":"brompheniramine maleate, phenylephrine HCl","description":"morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate","image":"http://dummyimage.com/132x127.jpg/dddddd/000000","price":"€21,88","category":"CHILDRENS DIMETAPP COLD AND ALLERGY","rank":"0.22","user_rank":"0.28"},
+					{"id":10,"name":"Theophylline","description":"quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu","image":"http://dummyimage.com/241x220.jpg/cc0000/ffffff","price":"€81,99","category":"Theophylline","rank":"0.58","user_rank":"0.41"},
+					{"id":11,"name":"Temozolomide","description":"sapien varius ut blandit non interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id","image":"http://dummyimage.com/186x202.jpg/dddddd/000000","price":"€21,78","category":"Temozolomide","rank":"0.63","user_rank":"0.56"},
+					{"id":12,"name":"Anticoagulant Citrate Phosphate Dextrose Adenine","description":"justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper","image":"http://dummyimage.com/198x164.gif/dddddd/000000","price":"€69,94","category":"CPDA-1","rank":"0.57","user_rank":"0.83"},
+					{"id":13,"name":"Metformin Hydrochloride","description":"nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede","image":"http://dummyimage.com/250x133.gif/cc0000/ffffff","price":"€16,91","category":"Metformin Hydrochloride","rank":"1.0","user_rank":"0.46"},
+					{"id":14,"name":"Dimethicone","description":"dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id","image":"http://dummyimage.com/239x116.gif/cc0000/ffffff","price":"€54,94","category":"XtraCare Skin Relief Oatmeal Daily Moisturizing","rank":"0.05","user_rank":"0.94"},
+					{"id":15,"name":"Omeprazole","description":"tempus sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst","image":"http://dummyimage.com/186x124.png/dddddd/000000","price":"€40,02","category":"omeprazole","rank":"0.86","user_rank":"0.58"},
+					{"id":16,"name":"Hexylresorcinol","description":"lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis","image":"http://dummyimage.com/139x215.jpg/dddddd/000000","price":"€61,21","category":"Myxcin-C","rank":"0.01","user_rank":"0.41"},
+					{"id":17,"name":"ciclesonide","description":"congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus","image":"http://dummyimage.com/228x105.gif/ff4444/ffffff","price":"€98,43","category":"Alvesco","rank":"0.1"},
+					{"id":18,"name":"Fexofenadine HCl","description":"morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci","image":"http://dummyimage.com/182x215.jpg/dddddd/000000","price":"€83,03","category":"fexo fenadine","rank":"0.85","user_rank":"0.2"},
+					{"id":19,"name":"SILICEA","description":"quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis","image":"http://dummyimage.com/155x162.jpg/dddddd/000000","price":"€32,63","category":"SILICEA","rank":"0.33","user_rank":"0.51"},
+					{"id":20,"name":"clobetasol propionate","description":"etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer","image":"http://dummyimage.com/187x200.png/cc0000/ffffff","price":"€78,68","category":"Clobetasol Propionate","rank":"0.9"},
+					{"id":21,"name":"Norethindrone Acetate and Ethinyl Estradiol and Ferrous Fumarate","description":"faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla","image":"http://dummyimage.com/203x138.jpg/cc0000/ffffff","category":"ESTROSTEP Fe"},
+					{"id":22,"name":"TENOFOVIR DISOPROXIL FUMARATE","description":"velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla","image":"http://dummyimage.com/207x137.png/ff4444/ffffff","category":"Viread","user_rank":"0.03"},
+					{"id":23,"name":"Hydrocortisone Acetate","description":"laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate","image":"http://dummyimage.com/171x115.gif/dddddd/000000","price":"€76,57","category":"CAREALL Hydrocortisone","rank":"0.74","user_rank":"0.18"},
+					{"id":24,"name":"citalopram hydrobromide","description":"mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at turpis a pede posuere nonummy integer","image":"http://dummyimage.com/218x216.png/cc0000/ffffff","price":"€88,76","category":"citalopram hydrobromide","rank":"0.65","user_rank":"0.7"},
+					{"id":25,"name":"methotrexate","description":"varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at dolor quis odio","image":"http://dummyimage.com/229x211.gif/5fa2dd/ffffff","price":"€53,51","category":"Rasuvo","rank":"0.67","user_rank":"0.8"}
+				];
+			}
+		});
+	})();
+	</script>
+</dom-module>
